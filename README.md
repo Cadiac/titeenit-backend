@@ -1,5 +1,7 @@
 # Titeenipeli 2022 backend
 
+https://user-images.githubusercontent.com/6438345/159184908-bacd932e-37bc-48c1-8990-d463f9616452.mp4
+
 ## Quick start
 
 **Note**: NPC and skill/buff icon assets are not included in this repository.
