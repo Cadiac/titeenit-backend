@@ -1,0 +1,9 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:14.2
+    container_name: titeeni-db
+    ports:
+     - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: regina
