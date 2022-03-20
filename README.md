@@ -33,18 +33,20 @@ To solve this, the following setup exists:
 - Backend is always running on api.titeenipeli.xyz with @titeenibot as its bot
 - The bot running on the backend has three commands:
   - `/login`: the normal login, redirects back to /api/login on the same domain the bot that heard this was running on, and then redirects the user to REDIRECT_URI
-  - `/dev`: same as normal login, but redirects back to /api/login/dev which alwaysredirects the user to UI at http://localhost:3000?token=, still creating the session on the remote backend that the bot runs on
+  - ~~`/dev`: same as normal login, but redirects back to /api/login/dev which always redirects the user to UI at http://localhost:3000?token=, still creating the session on the remote dev backend that the bot runs on~~
+    - NOTE: The dev server has been shut down and doesn't work anymore, and this is useless.
   - `/local`: the login callback from telegram is redirected from the server to localhost:4000, and the login session is to be created on the local backend you run
 
 So, for the `/local` command to work and create a local session for a backend running on your machine do the following steps:
-1. Register your own bot with @botfather and setup your local backend to use that bot with `TELEGRAM_BOT_TOKEN`
-2. Start your backend
-3. Send command `/local` to your bot with telegram
-4. Your local backend handles the message, and displays a login button with callback redirect to backend running on api.titeenipeli.xyz
-5. Complete the login. GET request to api.titeenipeli.xyz/api/login/local is sent, and that backend replies with 301 to localhost:4000/api/login/local
-6. Your local backend handles the message, creates local user and/or the session and redirects to `$REDIRECT_URI?token={token}` with the session token. By setting the REDIRECT_URI to "http://localhost:3000" you can now get local backend and UI working together.
+1. Register your own bot with @botfather setup your local backend to use that bot with `TELEGRAM_BOT_TOKEN`.
+2. Using botfather set the bot's domain to the URL with valid SSL where you're currently hosting the frontend. For now titeenipeli.xyz can be used, that environment is configured to redirect all requests to /login/local to "http://localhost:4000/api/login".
+3. Start your backend
+4. Send command `/local` to your bot with telegram
+5. Your local backend handles the message, and displays a login button with callback redirect to the domain you configured (titeenipeli.xyz)
+6. Complete the login. GET request to titeenipeli.xyz/login/local is sent, and that site redirects the request with 301 to localhost:4000/api/login/local
+7. Your local backend handles the message, creates local user and/or the session and redirects to `$REDIRECT_URI?token={token}` with the session token. By setting the REDIRECT_URI to "http://localhost:3000" you can now get local backend and UI working together.
 
-To just develop the UI with remote backend you can send command `/dev` to @titeenibot, and you'll be redirected to UI running on your machine with the session and backend at api.titeenipeli.xyz.
+If you're actually planning to run this locally or on a new environment contact @Cadiac on Telegram for help.
 
 ## Learn more about Phoenix
   * Official Phoenix website: https://www.phoenixframework.org/
