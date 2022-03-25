@@ -4,6 +4,8 @@
 
 Read the postmortem: https://docs.google.com/document/d/1Yp9LTFt-slZd7y6EQcgmbF7DzFsBGKLnxCfNW1ZZiWA/edit?usp=sharing
 
+Frontend repository: https://github.com/Cadiac/titeenit-frontend
+
 ## Quick start
 
 **Note**: NPC and skill/buff icon assets are not included in this repository.
